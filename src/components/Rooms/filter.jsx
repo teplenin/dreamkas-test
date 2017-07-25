@@ -1,17 +1,18 @@
 import React from 'react'
+import { DropDownMenu, MenuItem } from 'material-ui';
 
 const RoomsFilter = (props) => {
-    const onChange = (e) => {
-        props.onChange(e.target.value);
+    const onChange = (event, index, value) => {
+        props.onChange(value);
     }
 
     return (
         <div>
-            <select onChange={onChange}>
-                <option value='all'>Все комнаты</option>
-                <option value='free'>Только свободные комнаты</option>
-                <option value='booked'>Только забронированные комнаты</option>
-            </select>
+            <DropDownMenu value={props.value} onChange={onChange}>
+                <MenuItem value='all' primaryText='Все' />
+                <MenuItem value='free' primaryText='Только свободные' />
+                <MenuItem value='booked' primaryText='Только забронированные' />
+            </DropDownMenu>
         </div>
     )
 }

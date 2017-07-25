@@ -8,7 +8,7 @@ import { RoomsListContainer, RoomsItemContainer } from '../Rooms';
 import * as roomsActions from 'actions/rooms';
 
 import 'normalize.css';
-import './static/styles.scss';
+import './static/styles.css';
 
 class App extends Component {
     componentDidMount() {
@@ -20,12 +20,17 @@ class App extends Component {
     render() {
         return (
             <div className='app'>
-                <main>
-                    <Switch>
-                        <Route exact path='/' component={RoomsListContainer} />
-                        <Route path='/:room_id(\d+)' component={RoomsItemContainer} />
-                    </Switch>
-                </main>
+                <div className='app__container'>
+                    <main className='app__content'>
+                        <Switch>
+                            <Route exact path='/' component={RoomsListContainer} />
+                            <Route path='/:room_id(\d+)' component={RoomsItemContainer} />
+                        </Switch>
+                    </main>
+                </div>
+                <footer className='app__footer'>
+                    copyright 2016
+                </footer>
             </div>
         )
     }

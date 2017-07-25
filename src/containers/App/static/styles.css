@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box; }
+
+.app {
+  min-width: 320px;
+  background-color: #f0f0f0;
+  font-family: 'Roboto', sans-serif; }
+  .app__container {
+    min-height: 100vh;
+    padding-bottom: 50px; }
+  .app__content {
+    max-width: 1230px;
+    margin: 0 auto;
+    background-color: #fff; }
+    @media (max-width: 600px) {
+      .app__content {
+        padding: 20px 15px; } }
+    @media (min-width: 601px) {
+      .app__content {
+        padding: 40px; } }
+  .app__footer {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 50px;
+    margin-top: -50px;
+    padding: 15px 0; }

@@ -7,6 +7,8 @@ import { RoomsItem } from 'components/Rooms';
 import { getRoom } from 'selectors/rooms';
 import * as roomsActions from 'actions/rooms';
 
+import './static/styles/item.css';
+
 class RoomsItemContainer extends PureComponent {
     handleUpdateName = (name) => {
         const { updateItemName } = this.props.roomsActions;
@@ -17,9 +19,7 @@ class RoomsItemContainer extends PureComponent {
     render() {
         if(!this.props.roomProps) {
             return (
-                <div>
-                    Комната не найдена
-                </div>
+                <h1>Комната не найдена</h1>
             )
         }
 

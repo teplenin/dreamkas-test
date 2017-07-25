@@ -5,6 +5,8 @@ import { RoomsList, RoomsFilter } from 'components/Rooms';
 
 import { getRooms } from 'selectors/rooms';
 
+import './static/styles/list.css';
+
 class RoomsListContainer extends PureComponent {
     constructor() {
         super();
@@ -33,8 +35,13 @@ class RoomsListContainer extends PureComponent {
         })
 
         return (
-            <div>
-                <RoomsFilter onChange={this.onChangeFilter} />
+            <div className='roomslistPage'>
+                <div className='roomslistPage__header'>
+                    <div className='roomslistPage__header-title'>Бронирование комнат</div>
+                    <div className='roomslistPage__header-filter'>
+                        <RoomsFilter value={this.state.filter} onChange={this.onChangeFilter} />
+                    </div>
+                </div>
                 <RoomsList roomsList={roomsList} />
             </div>
         )

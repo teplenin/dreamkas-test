@@ -11,6 +11,8 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import App from './containers/App';
 
+injectTapEventPlugin();
+
 const redrerApp = (component) => (
     <Provider store={store}>
         <ConnectedRouter history={history}>
@@ -24,4 +26,3 @@ const redrerApp = (component) => (
 ReactDOM.render(redrerApp(<App />), document.getElementById('root'));
 
 registerServiceWorker();
-injectTapEventPlugin();

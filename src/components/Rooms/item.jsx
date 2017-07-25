@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
+import { TextField, RaisedButton } from 'material-ui';
+import ArrowBackIcn from 'material-ui/svg-icons/navigation/arrow-back';
+
 class RoomsItem extends PureComponent {
     static defaultProps = {
         roomProps: {},
@@ -35,14 +38,20 @@ class RoomsItem extends PureComponent {
 
     render() {
         return (
-            <div>
-                <div>
-                    <Link to='/'>Назад</Link>
+            <div className='roomsitemPage'>
+                <div className='roomsitemPage__header'>
+                    <Link to='/' className='roomsitemPage__header-goback'>
+                        <ArrowBackIcn style={{ width: '40px', height: '40px' }} />
+                    </Link>
+                    <div className='roomsitemPage__header-title'>{this.props.roomProps.number}</div>
                 </div>
-                Комната {this.props.roomProps.number}
-                <div>
-                    <input type='text' value={this.state.name} onChange={this.handleChangeName} />
-                    <button type='button' onClick={this.handleClickSaveName}>Сохранить</button>
+                <div className='roomsitemPage__booking'>
+                    <div className='roomsitemPage__booking-field'>
+                        <TextField floatingLabelText='Имя' defaultValue={this.state.name} onChange={this.handleChangeName} />
+                    </div>
+                    <div className='roomsitemPage__booking-save'>
+                        <RaisedButton primary label='Сохранить' onClick={this.handleClickSaveName} />
+                    </div>
                 </div>
             </div>
         )

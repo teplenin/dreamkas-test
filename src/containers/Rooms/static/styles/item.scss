@@ -1,0 +1,22 @@
+.roomsitemPage {
+    &__header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+
+        &-title {
+            color: rgba(#000, .9);
+            font-size: 40px;
+        }
+
+        &-goback {
+            margin-right: 15px;
+        }
+    }
+
+    &__booking {
+        &-field {
+            margin-bottom: 20px;
+        }
+    }
+}

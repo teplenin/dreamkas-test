@@ -1,0 +1,14 @@
+.roomslistPage {
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+
+        &-title {
+            color: rgba(#000, .9);
+            font-size: 40px;
+        }
+    }
+}

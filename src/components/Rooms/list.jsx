@@ -1,16 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const RoomsList = ({ roomsList }) => {
+import {
+  Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn
+} from 'material-ui/Table';
+
+const RoomsList = ({ roomsList, ...props }, { router }) => {
+    const handleSelectRow = (key) => {
+        const room = roomsList[key] || {};
+
+        if(room.id) {
+            router.history.push(`/${room.id}`);
+        }
+    }
+
     return (
-        <div>
-            {roomsList.map(room => (
-                <div key={room.id}>
-                    <Link to={`/${room.id}`}>Комната {room.number} ({room.name || '—'})</Link>
-                </div>
-            ))}
+        <div className='roomslist'>
+            <Table selectable={false} onCellClick={handleSelectRow}>
+                <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+                    <TableRow>
+                        <TableHeaderColumn>Номер комнаты</TableHeaderColumn>
+                        <TableHeaderColumn>Имя</TableHeaderColumn>
+                    </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false} showRowHover>
+                    {roomsList.map(room => (
+                        <TableRow key={room.id}>
+                            <TableRowColumn>{room.number}</TableRowColumn>
+                            <TableRowColumn>{room.name || '—'}</TableRowColumn>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
         </div>
     )
+}
+
+RoomsList.contextTypes = {
+    router: PropTypes.object.isRequired
 }
 
 export default RoomsList
