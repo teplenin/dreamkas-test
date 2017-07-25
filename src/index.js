@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
-import store, { history } from './store'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import store, { history } from './store';
 
 import registerServiceWorker from './registerServiceWorker';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -12,7 +14,9 @@ import App from './containers/App';
 const redrerApp = (component) => (
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            {component}
+            <MuiThemeProvider>
+                {component}
+            </MuiThemeProvider>
         </ConnectedRouter>
     </Provider>
 )

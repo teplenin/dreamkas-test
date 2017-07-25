@@ -1,4 +1,6 @@
-На основе create-react-app
+Задание: https://github.com/teplenin/dreamkas_test_frontend
+
+Сделано на основе create-react-app
 
 ### `npm start`
 

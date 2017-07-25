@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "history": "^4.6.3",
+    "immutable": "^3.8.1",
     "material-ui": "^0.18.7",
+    "normalize.css": "^7.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
@@ -13,13 +15,15 @@
     "react-scripts": "1.0.10",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
   },
   "scripts": {
-    "start": "cross-env PORT=3006 react-scripts start",
+    "start": "cross-env NODE_PATH=src/ PORT=3006 react-scripts start",
     "build": "react-scripts build"
   },
   "devDependencies": {
-    "cross-env": "^5.0.1"
+    "cross-env": "^5.0.1",
+    "whatwg-fetch": "^2.0.3"
   }
 }

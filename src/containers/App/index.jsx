@@ -1,20 +1,42 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import { RoomsListContainer } from '../Rooms';
+import { RoomsListContainer, RoomsItemContainer } from '../Rooms';
 
+import * as roomsActions from 'actions/rooms';
+
+import 'normalize.css';
 import './static/styles.scss';
 
 class App extends Component {
+    componentDidMount() {
+        const { fetchRoomsList } = this.props.roomsActions;
+
+        fetchRoomsList();
+    }
+
     render() {
         return (
             <div className='app'>
                 <main>
-                    <Route exact path='/' component={RoomsListContainer} />
+                    <Switch>
+                        <Route exact path='/' component={RoomsListContainer} />
+                        <Route path='/:room_id(\d+)' component={RoomsItemContainer} />
+                    </Switch>
                 </main>
             </div>
         )
     }
 }
 
-export default App;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        roomsActions: bindActionCreators(roomsActions, dispatch)
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
