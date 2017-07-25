@@ -6,7 +6,7 @@ const RoomsList = ({ roomsList }) => {
         <div>
             {roomsList.map(room => (
                 <div key={room.id}>
-                    <Link to={`/${room.id}`}>Комната {room.number}</Link>
+                    <Link to={`/${room.id}`}>Комната {room.number} ({room.name || '—'})</Link>
                 </div>
             ))}
         </div>

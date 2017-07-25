@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 
 import {
     FETCH_ROOMS_LIST_REQUEST, FETCH_ROOMS_LIST_SUCCESS,
-    FETCH_ROOMS_LIST_FAILURE
+    FETCH_ROOMS_LIST_FAILURE, UPDATE_ROOMS_ITEM_NAME
 } from 'constants/actions';
 
 import { API_URL } from 'constants/api';
@@ -37,4 +37,12 @@ export const fetchRoomsList = () => {
             .then(data => dispatch(fetchRoomsListSuccess(data)))
             .catch(error => dispatch(fetchRoomsListFailure(error)));
     }
+}
+
+export const updateItemName = (roomID, name) => {
+    return dispatch => dispatch({
+        type: UPDATE_ROOMS_ITEM_NAME,
+        payload: name,
+        roomID
+    })
 }
