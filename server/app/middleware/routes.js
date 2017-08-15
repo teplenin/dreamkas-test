@@ -1,11 +1,11 @@
-import Router from 'koa-router';
+import koaRouter from 'koa-router';
+
+import roomsRouter from '../routes/rooms';
 
 export function routesMiddleware(options = {}) {
-    const router = new Router();
+    const router = new koaRouter({ prefix: '/api' });
 
-    router.get('/', async (ctx, next) => {
-        ctx.body = 'Hello world'
-    });
+    router.use('/rooms', roomsRouter.routes());
 
     return router;
 }
