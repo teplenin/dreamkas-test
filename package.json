@@ -30,7 +30,6 @@
     "build": "npm run build-css && npm run build-js"
   },
   "devDependencies": {
-    "cross-env": "^5.0.1",
-    "whatwg-fetch": "^2.0.3"
+    "cross-env": "^5.0.1"
   }
 }
