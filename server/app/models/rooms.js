@@ -4,19 +4,22 @@ import uuid from 'uuid';
 const db = new Datastore('server/database.json');
 
 const roomsModel = {
-    getAll: async () => {
-        return db.get('rooms').value()
+    getItems: async (offset = 0, count = 10) => {
+        return await db.get('rooms').drop(offset).take(count).value();
     },
-    get: async (id) => {
+    getItemsTotal: async () => {
+        return await db.get('rooms').size().value();
+    },
+    getItem: async (id) => {
         return await db.get('rooms').find({ id }).value();
     },
-    add: async (data) => {
+    addItem: async (data) => {
         return await db.get('rooms').push(data).last().assign({ id: uuid() }).write();
     },
-    update: async (id, data) => {
+    updateItem: async (id, data) => {
         return await db.get('rooms').find({ id }).assign(data).write();
     },
-    remove: async (id) => {
+    removeItem: async (id) => {
         return await db.get('rooms').remove({ id }).write();
     }
 }

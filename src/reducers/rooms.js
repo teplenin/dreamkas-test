@@ -1,4 +1,4 @@
-import { fromJS, List } from 'immutable';
+import { fromJS, List, Map } from 'immutable';
 
 import {
     FETCH_ROOMS_LIST_REQUEST, FETCH_ROOMS_LIST_SUCCESS,
@@ -6,35 +6,32 @@ import {
 } from 'constants/actions';
 
 const initialState = fromJS({
-    items: [],
-    fetching: false,
-    fetchingError: ''
+    ids: [],
+    data: [],
+    status: ''
 });
 
 export default (state = initialState, { type, payload, ...props }) => {
     switch (type) {
         case FETCH_ROOMS_LIST_REQUEST:
-            return state.set('fetching', true)
-                        .set('error', '');
+            return state.set('status', 'fetching');
 
-        case FETCH_ROOMS_LIST_SUCCESS:
-            return state.set('items', List(payload))
-                        .set('fetching', false)
-                        .set('error', '');
+        case FETCH_ROOMS_LIST_SUCCESS: {
+            const ids = payload.map(item => String(item.id));
+            const data = payload.map(item => Map(item));
 
+            return state.set('ids', List(ids))
+                        .set('data', List(data))
+                        .set('status', 'complete');
+        }
         case FETCH_ROOMS_LIST_FAILURE:
-            return state.set('fetching', false)
-                        .set('error', payload.message);
+            return state.set('status', 'error');
 
-        case UPDATE_ROOMS_ITEM_NAME:
-            return state.update('items', items => items.map(item => {
-                if(item.id === parseInt(props.roomID, 10)) {
-                    return { ...item, name: payload }
-                }
+        case UPDATE_ROOMS_ITEM_NAME: {
+            const IDx = state.get('ids').indexOf(String(props.roomID));
 
-                return item;
-            }));
-
+            return state.setIn(['data', IDx, 'name'], payload);
+        }
         default:
             return state;
     }
