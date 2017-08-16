@@ -28,7 +28,7 @@
     "build-js": "cross-env NODE_PATH=src/ react-scripts build",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && npm run build-js",
-    "server": "nodemon --ignore server/database.json server"
+    "server": "nodemon --watch server/ --ignore server/database.json server"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
@@ -37,6 +37,7 @@
     "koa": "^2.3.0",
     "koa-body": "^2.3.0",
     "koa-router": "^7.2.1",
+    "koa2-cors": "^2.0.3",
     "lowdb": "^0.16.2",
     "nodemon": "^1.11.0",
     "uuid": "^3.1.0"
