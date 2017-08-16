@@ -10,6 +10,8 @@ router.get('/', async (ctx) => {
         const data = await roomsModel.getItems(ctx.query.offset, ctx.query.count);
         const total = await roomsModel.getItemsTotal();
 
+        // const data = [...Array(500)].map((_, key) => ({ id: (key + 1), number: `к-${key + 1}`, name: 'fasf' }))
+
         ctx.body = { status: 'success', total, data }
     })
     .get('/:id', async (ctx) => {

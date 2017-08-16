@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { RoomsList, RoomsFilter } from 'components/Rooms';
 
-import { getRooms } from 'selectors/rooms';
+import { getRoomsID } from 'selectors/rooms';
 
 import './static/styles/list.css';
 
@@ -16,6 +16,18 @@ class RoomsListContainer extends PureComponent {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if(this.state.filter !== nextState.filter) {
+            return true;
+        }
+
+        if(JSON.stringify(this.props.roomsList) !== JSON.stringify(nextProps.roomsList)) {
+            return true;
+        }
+
+        return false;
+    }
+
     onChangeFilter = (value) => {
         this.setState({
             filter: value
@@ -23,17 +35,6 @@ class RoomsListContainer extends PureComponent {
     }
 
     render() {
-        const roomsList = this.props.roomsList.filter(room => {
-            switch(this.state.filter) {
-                case 'free':
-                    return !room.name;
-                case 'booked':
-                    return !!room.name;
-                default:
-                    return true;
-            }
-        })
-
         return (
             <div className='roomslistPage'>
                 <div className='roomslistPage__header'>
@@ -42,7 +43,7 @@ class RoomsListContainer extends PureComponent {
                         <RoomsFilter value={this.state.filter} onChange={this.onChangeFilter} />
                     </div>
                 </div>
-                <RoomsList roomsList={roomsList} />
+                <RoomsList roomsList={this.props.roomsList} filter={this.state.filter} />
             </div>
         )
     }
@@ -50,7 +51,7 @@ class RoomsListContainer extends PureComponent {
 
 const mapStateToProps = (state) => {
     return {
-        roomsList: getRooms(state)
+        roomsList: getRoomsID(state)
     }
 }
 

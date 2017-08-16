@@ -1,22 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn
-} from 'material-ui/Table';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table';
+
+import RoomsListItem from './listItem';
 
 const RoomsList = ({ roomsList, ...props }, { router }) => {
-    const handleSelectRow = (key) => {
-        const room = roomsList[key] || {};
-
-        if(room.id) {
-            router.history.push(`/${room.id}`);
-        }
+    const handleSelectRow = (roomID) => {
+        router.history.push(`/${roomID}`);
     }
 
     return (
         <div className='roomslist'>
-            <Table selectable={false} onCellClick={handleSelectRow}>
+            <Table selectable={false}>
                 <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                     <TableRow>
                         <TableHeaderColumn>Номер комнаты</TableHeaderColumn>
@@ -24,12 +20,7 @@ const RoomsList = ({ roomsList, ...props }, { router }) => {
                     </TableRow>
                 </TableHeader>
                 <TableBody displayRowCheckbox={false} showRowHover>
-                    {roomsList.map(room => (
-                        <TableRow key={room.id}>
-                            <TableRowColumn>{room.number}</TableRowColumn>
-                            <TableRowColumn>{room.name || '—'}</TableRowColumn>
-                        </TableRow>
-                    ))}
+                    {roomsList.map(roomID => <RoomsListItem key={roomID} roomID={roomID} filter={props.filter} onClick={() => handleSelectRow(roomID)} />)}
                 </TableBody>
             </Table>
         </div>
