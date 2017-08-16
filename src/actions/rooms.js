@@ -32,6 +32,11 @@ export const fetchRoomsList = () => {
 
         return fetch(`${API_URL}/rooms/`)
             .then(response => response.json())
+            .then(response => {
+                if(response.status !== 'success' || !response.data) throw(response);
+
+                return response.data;
+            })
             .then(data => dispatch(fetchRoomsListSuccess(data)))
             .catch(error => dispatch(fetchRoomsListFailure(error)));
     }
