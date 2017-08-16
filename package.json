@@ -2,6 +2,15 @@
   "name": "dreamkas",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "build-css": "node-sass-chokidar --include-path ./src src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src src/ -o src/ --watch --recursive",
+    "start-js": "cross-env NODE_PATH=src/ PORT=3006 react-scripts start",
+    "build-js": "cross-env NODE_PATH=src/ react-scripts build",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && npm run build-js",
+    "server": "nodemon --watch server/ --ignore server/database.json server"
+  },
   "dependencies": {
     "history": "^4.6.3",
     "immutable": "^3.8.1",
@@ -21,15 +30,16 @@
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1"
   },
-  "scripts": {
-    "build-css": "node-sass-chokidar --include-path ./src src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src src/ -o src/ --watch --recursive",
-    "start-js": "cross-env NODE_PATH=src/ PORT=3006 react-scripts start",
-    "build-js": "cross-env NODE_PATH=src/ react-scripts build",
-    "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && npm run build-js"
-  },
   "devDependencies": {
-    "cross-env": "^5.0.1"
+    "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.24.1",
+    "cross-env": "^5.0.1",
+    "koa": "^2.3.0",
+    "koa-body": "^2.3.0",
+    "koa-router": "^7.2.1",
+    "koa2-cors": "^2.0.3",
+    "lowdb": "^0.16.2",
+    "nodemon": "^1.11.0",
+    "uuid": "^3.1.0"
   }
 }
