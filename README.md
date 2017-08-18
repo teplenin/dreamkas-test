@@ -1,3 +1,11 @@
+Пример приложения на ReactJS, Redux
+
+
+Сделано на основе Create-react-app
+
+Mock-сервер на Koa2
+
+
 ### `npm run server`
 
 Запускает Mock-API-сервер
